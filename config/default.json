@@ -1,0 +1,7 @@
+{
+    "app": {
+        "port": 8085,
+        "name": "cryptoapp",
+        "awsToken": ""
+    }
+}
