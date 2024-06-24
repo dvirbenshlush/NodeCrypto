@@ -1,5 +1,9 @@
 import { Router, urlencoded } from "express";
 import { dashboard, addSymbol } from "../contoller/users/controlers";
+import validation from "../middlewears/error/validation";
+import { addSymbolValidator } from "../contoller/users/validator";
+
+import joi from 'Joi';
 
 const router = Router();
 
@@ -9,5 +13,5 @@ const router = Router();
 // })
 router.use(urlencoded({extended: false}))
 router.get('/dashboard', dashboard)
-router.post('/symbols', addSymbol)
+router.post('/symbols', validation(addSymbolValidator), addSymbol)
 export default router; 
