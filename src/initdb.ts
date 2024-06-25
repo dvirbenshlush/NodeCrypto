@@ -13,7 +13,16 @@ const query = promisify(connection.query).bind(connection);
         console.log('connected')
         
         await query(`
-          CREATE TABLE IF NOT EXISTS users_symbols (
+            CREATE TABLE IF NOT EXISTS users (
+                id int auto_increment,
+                github_id varchar(255) not null,
+                primary key (id)
+            ) 
+        `)
+        console.log('created users table')
+    
+        await query(`
+            CREATE TABLE IF NOT EXISTS users_symbols (
                 id int auto_increment,
                 user_id int not null,
                 symbol varchar(3) not null,
@@ -21,9 +30,9 @@ const query = promisify(connection.query).bind(connection);
                 CONSTRAINT unique_user_id_symbol UNIQUE (user_id, symbol)
             ) 
         `)
-        console.log('created users_symbols table')
-        connection.end()
+        console.log('created users_symbols table');
 
+        connection.end()
 
     } catch (err) {
         console.error(err)

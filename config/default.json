@@ -10,6 +10,15 @@
         "port": 3310,
         "password": "",
         "database": "cryptoapp"
+    },
+    "mongo": {
+        "host": "localhost",
+        "user": "root",
+        "port": 27017,
+        "password": "",
+        "database": "cryptoapp"
+    },
+    "worker": {
+        "interval": 30000
     }
-    
 }
