@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node src/app.ts",
+    "worker": "nodemon --exec ts-node src/worker.ts",
     "initdb": "ts-node src/initdb.ts"
   },
   "keywords": [],

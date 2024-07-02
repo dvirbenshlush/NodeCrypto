@@ -5,6 +5,12 @@ import { OkPacketParams } from "mysql2";
 
 class MySQL implements Model {
 
+    async getDistinctSymbols(): Promise<{ symbol: string; }[]> {
+        const symbols = await query({sql:`
+            SELECT DISTINCT symbol from users_symbols
+        `}) as DTO[];
+        return symbols;
+    }
     async getForUser(userId: number): Promise<DTO[]> {
         const userSymbols = await query({
             sql:`

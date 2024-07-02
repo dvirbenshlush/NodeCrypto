@@ -14,7 +14,6 @@ export async function addSymbol(req: Request, res: Response, next: NextFunction)
         }
 
         const newUserSymbol = await getUserSymbolModel().add(userSymbol)
-        console.log('newUserSymbol', newUserSymbol)
         res.redirect('/users/dashboard')
     } catch (err) {
         next(err)
@@ -23,10 +22,10 @@ export async function addSymbol(req: Request, res: Response, next: NextFunction)
 
 export async function dashboard(req: Request, res: Response, next: NextFunction) {
     try {
-        const userSymbols = await getUserSymbolModel().getForUser(1);
+        const userSymbols = await getUserSymbolModel().getForUser(1); 
 
         const symbolValues = await Promise.all(userSymbols.map(({symbol}) => {
-            const print = getSymbolValueModel().getLatest(symbol)
+            return getSymbolValueModel().getLatest(symbol)
         }))
 
 
