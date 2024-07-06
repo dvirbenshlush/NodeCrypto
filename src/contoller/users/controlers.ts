@@ -9,7 +9,7 @@ export async function addSymbol(req: Request, res: Response, next: NextFunction)
     try {
 
         const userSymbol = {
-            userId: 1,
+            userId: req.user?.id ?? 1,
             symbol: req.body.symbol as string
         }
 
@@ -22,7 +22,7 @@ export async function addSymbol(req: Request, res: Response, next: NextFunction)
 
 export async function dashboard(req: Request, res: Response, next: NextFunction) {
     try {
-        const userSymbols = await getUserSymbolModel().getForUser(1); 
+        const userSymbols = await getUserSymbolModel().getForUser(req.user?.id ?? 1); 
 
         const symbolValues = await Promise.all(userSymbols.map(({symbol}) => {
             return getSymbolValueModel().getLatest(symbol)

@@ -1,0 +1,37 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "TS-Node",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node",
+            "runtimeArgs": [
+                "--files", // <-- Add this line
+                "--transpile-only",
+                "--project",
+                "${workspaceRoot}/tsconfig.json" // <-- Add this line
+            ],
+            /**
+             * The value of "${relativeFile}" represents the path of the currently active file relative to the workspace root.
+             * It is a placeholder that will be replaced with the actual file path when the launch configuration is executed.
+             * In this context, it is used as an argument for the program being launched.
+             * 
+             * Example:
+             * If the workspace root is "/c:/Users/97252/NodeCrypto" and the currently active file is "/c:/Users/97252/NodeCrypto/src/app.js",
+             * then "${relativeFile}" will be replaced with "src/app.js" when the launch configuration is executed.
+             */
+            "args": [
+                // "${relativeFile}",
+                "src/app.ts",
+                // ...
+            ],
+            "cwd": "${workspaceRoot}",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "<node_internals>/*",
+                "node_modules/*"
+            ]
+        }
+    ]
+}

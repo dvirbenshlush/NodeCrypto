@@ -2,10 +2,12 @@ import { Router, urlencoded } from "express";
 import { dashboard, addSymbol } from "../contoller/users/controlers";
 import validation from "../middlewears/error/validation";
 import { addSymbolValidator } from "../contoller/users/validator";
-
+import enforceAuth from "../middlewears/enforce-auth";
 import joi from 'Joi';
 
 const router = Router();
+
+router.use(enforceAuth)
 
 // router.get('/dashboard', (req, res, next) => {
 //     res.setHeader('Content-type', 'text/html')

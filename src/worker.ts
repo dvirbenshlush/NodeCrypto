@@ -3,6 +3,10 @@ import { getModel as getUserSymbolModel } from "./models/user-symbol/factory";
 import config from 'config';
 import cheerio from "cheerio";
 import axios from "axios";
+import { io } from "socket.io-client";
+
+const socket = io(`ws://${config.get('worker.io.host')}:${config.get('worker.io.port')}`)
+
 
 // (async() => {
 //     const symbolValue = {
@@ -31,6 +35,11 @@ async function scrape(symbol: string) {
     }
     await getSymbolValueModel().add(symbolValue)
     console.log('saved symbol value in mongo', symbolValue)
+
+    socket.emit('new symbol value', {
+        symbol,
+        value
+    })
 
 }
 async function work() {
